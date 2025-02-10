@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/sh -ex
 
 if ! [ $FORWARD_TO ]; then
     echo "FORWARD_TO environment variable is not set"
@@ -21,4 +21,4 @@ iptables -t nat -A POSTROUTING -p $PROTOCOL -d $FORWARD_TO --dport $FORWARD_PORT
 
 echo "Waiting and forwarding connections..."
 
-trap : TERM INT; while sleep 3600; do :; done & wait
+exec sleep infinity
